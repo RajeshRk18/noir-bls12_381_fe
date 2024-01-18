@@ -186,10 +186,10 @@ impl PrimeField {
 
         let mut carry2 = 0;
         for i in 0..NUM_LIMBS {
-            let k = tmp[i] * PrimeField::P_INV();
+            let k: u112 = tmp[i] as u112 * PrimeField::P_INV() as u112;
             let mut carry = 0;
             for j in 0..NUM_LIMBS {
-                let (prod, c) = utils::mac(tmp[i + j], k, modulus.limbs[j], carry);
+                let (prod, c) = utils::mac(tmp[i + j], k as u56, modulus.limbs[j], carry);
                 tmp[i + j] = prod;
                 carry = c;
             }
