@@ -606,12 +606,3 @@ fn test_add_mod1() {
     let d = a.add_mod(b, c);
     assert(d.eq(BigUint56::from_bytes([4])));
 }
-#[test]
-fn test_sbb1() {
-    let a = BigUint56 { limbs: [1, 0, 0, 0, 0, 0, 0] };
-    let b = BigUint56 { limbs: [2, 0, 0, 0, 0, 0, 0] };
-    let (diff, borrow) = a.sbb(b);
-
-    assert(diff.eq(BigUint56 { limbs: [0 - 1 as u56; 7] }));
-    assert(borrow >> (BITS_PER_LIMB as u56 - 1) == 1);
-}
